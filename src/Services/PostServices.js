@@ -2,6 +2,7 @@ import fs from 'fs/promises';
 import { createPostRepo, 
          deletePostRepo, 
          dislikePostRepo, 
+         fetchLikesOfOnePostRepo, 
          fetchOnePostByIdRepo, 
          fetchPostsOfOneUserRepo, 
          getAllPostsRepo, 
@@ -106,11 +107,21 @@ async function deletePostService(postId){
     }
 }
 
+async function fetchLikesOfOnePostServ(postId){
+    try {
+        const post = await fetchLikesOfOnePostRepo(postId);
+        return post.likes;
+    } catch (error) {
+        throw new Error("Internal server error from repository");
+    }
+}
+
 export {createPostService,
     getAllPostsService,
     likePostService,
     dislikePostService,
     fetchPostsOfOneUserServ,
     fetchOnePostByIdServ,
-    deletePostService
+    deletePostService,
+    fetchLikesOfOnePostServ
     };

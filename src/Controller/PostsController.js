@@ -1,6 +1,7 @@
 import { createPostService, 
          deletePostService, 
          dislikePostService, 
+         fetchLikesOfOnePostServ, 
          fetchOnePostByIdServ, 
          fetchPostsOfOneUserServ, 
          getAllPostsService, 
@@ -146,11 +147,34 @@ async function deletePost(req,res){
     }
 }
 
+async function fetchLikesOfOnePost(req,res){
+    try {
+        const response = await fetchLikesOfOnePostServ(req.params.postid);  
+        console.log("response is",response);      
+        return res.status(200).json({
+            success : true,
+            data : response
+        });        
+    } catch (error) {
+        if(error.message == "Internal server error from repository"){
+            return res.status(500).json({
+                success : false,
+                message : error.message
+            });
+        }
+        else return res.status(500).json({
+            success : false,
+            message : "Internal service error from service"
+        });
+    }    
+}
+
 export {createPost,
         getAllPosts,
         likePost,
         dislikePost,
         fetchPostsOfOneUser,
         getOnePostById,
-        deletePost
+        deletePost,
+        fetchLikesOfOnePost
     };

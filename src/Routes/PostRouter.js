@@ -3,6 +3,7 @@ import uploader from '../Middlewares/MulterMiddleWare.js';
 import { createPost, 
          deletePost, 
          dislikePost, 
+         fetchLikesOfOnePost, 
          fetchPostsOfOneUser, 
          getAllPosts, 
          getOnePostById, 
@@ -16,6 +17,7 @@ PostRouter.get('/one/:postid',getOnePostById);
 PostRouter.post('/like',likePost);
 PostRouter.post('/dislike',dislikePost);
 PostRouter.get('/:userid',fetchPostsOfOneUser);
+PostRouter.get('/likes/:postid',fetchLikesOfOnePost);
 
 PostRouter.delete('/:postid',deletePost);
 

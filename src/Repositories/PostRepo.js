@@ -102,11 +102,22 @@ async function deletePostRepo(postId){
     }    
 }
 
+async function fetchLikesOfOnePostRepo(postId){    
+    try {     
+        const post = await Post.findOne({ _id: postId }).populate('likes','firstName lastName profileImage instaId').exec();        
+        console.log("Post with all likes is",post);
+        return post;
+    } catch (error) {
+        throw new Error("Internal server error from repository");
+    }    
+}
+
 export { createPostRepo,
         getAllPostsRepo,
         likePostRepo,
         dislikePostRepo ,
         fetchPostsOfOneUserRepo,
         fetchOnePostByIdRepo,
-        deletePostRepo 
+        deletePostRepo,
+        fetchLikesOfOnePostRepo
 };
