@@ -3,7 +3,7 @@ import User from "../Schema/UserSchema.js";
 import {io} from '../index.js';
 
 async function findUserRepo(userDetails){
-    const email = userDetails.email;
+    const email = userDetails?.email;
     const instaId = userDetails?.instaId;
     try {
         const user = await User.findOne({

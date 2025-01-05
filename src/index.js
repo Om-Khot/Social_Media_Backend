@@ -10,6 +10,8 @@ import UserRouter from './Routes/UserRouter.js';
 import PostRouter from './Routes/PostRouter.js';
 import SettingsRouter from './Routes/SettingsRouter.js';
 import CommentsRouter from './Routes/CommentsRouter.js';
+import ConversationRouter from './Routes/ConversationRouter.js';
+import MessageRouter from './Routes/MessageRouter.js';
 
 const app = express(); // Express app
 const server = http.createServer(app); // wrap express app with http server
@@ -36,6 +38,8 @@ app.use('/user',UserRouter);
 app.use('/post',PostRouter);
 app.use('/settings',SettingsRouter);
 app.use('/comment',CommentsRouter);
+app.use('/conversation',ConversationRouter);
+app.use('/message',MessageRouter);
 
 // socket connection 
 io.on('connection',(socket)=>{
