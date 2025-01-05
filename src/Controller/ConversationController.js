@@ -1,4 +1,4 @@
-import { createConversationServ, getAllConversationsOfaUserServ } from "../Services/ConversationServices.js";
+import { createConversationServ, getAllConversationsOfaUserServ, getConversationServ } from "../Services/ConversationServices.js";
 
 async function createConversation(req,res){
     console.log("controller hits and req.body is",req.body);
@@ -35,5 +35,19 @@ async function getConversationsOfaUser(req,res){
     }    
 }
 
+async function getConversationById(req,res){
+    try {
+        const response = await getConversationServ(req.params.conversationId);
+        return res.status(200).json({
+            success : true,
+            data : response
+        });        
+    } catch (error) {
+        return res.status(500).json({
+            success : false,
+            message : error.message
+        });
+    }    
+}
 
-export {createConversation,getConversationsOfaUser};
+export {createConversation,getConversationsOfaUser,getConversationById};

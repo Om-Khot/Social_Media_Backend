@@ -1,4 +1,4 @@
-import { createConversationRepo, getAllConversationsOfaUserRepo } from "../Repositories/ConversationsRepo.js";
+import { createConversationRepo, getAllConversationsOfaUserRepo, getConversationRepo } from "../Repositories/ConversationsRepo.js";
 import Conversation from "../Schema/ConversionScema.js";
 import User from "../Schema/UserSchema.js";
 
@@ -19,8 +19,9 @@ async function createConversationServ(conversationDetails){
     }
 
     // check if conversation already exists
-    const existingConversation = await Conversation.find({ members : [user1,user2] });    
+    const existingConversation = await Conversation.findOne({ members :{$all : [user1,user2]} });    
     if(existingConversation){
+        console.log("Conversation already exists",existingConversation);
         throw new Error("Conversation already exists");
     }
     
@@ -44,4 +45,14 @@ async function getAllConversationsOfaUserServ(userId){
     }    
 }
 
-export {createConversationServ,getAllConversationsOfaUserServ};
+async function getConversationServ(conversationId){    
+    try {        
+        const conversation = await getConversationRepo(conversationId);
+        return conversation;
+    } catch (error) {
+        console.log("Error in getConversationServ",error);
+        throw new Error("Internal server error from service");
+    }    
+}
+
+export {createConversationServ,getAllConversationsOfaUserServ,getConversationServ};

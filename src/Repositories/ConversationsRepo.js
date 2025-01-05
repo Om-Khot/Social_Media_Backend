@@ -24,4 +24,14 @@ async function getAllConversationsOfaUserRepo(userId){
     }    
 }
 
-export {createConversationRepo,getAllConversationsOfaUserRepo};
+async function getConversationRepo(conversationId){
+    try {        
+        const conversation = await Conversation.findOne({ _id : conversationId }).populate('members','firstName lastName profileImage instaId');
+        return conversation;
+    } catch (error) {
+        console.log("Error in getConversationRepo",error);
+        throw new Error("Internal server error from repository");
+    }    
+}
+
+export {createConversationRepo,getAllConversationsOfaUserRepo,getConversationRepo};
