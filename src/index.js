@@ -12,6 +12,7 @@ import SettingsRouter from './Routes/SettingsRouter.js';
 import CommentsRouter from './Routes/CommentsRouter.js';
 import ConversationRouter from './Routes/ConversationRouter.js';
 import MessageRouter from './Routes/MessageRouter.js';
+import StoriesRouter from './Routes/StoriesRoute.js';
 
 const app = express(); // Express app
 const server = http.createServer(app); // wrap express app with http server
@@ -40,6 +41,7 @@ app.use('/settings',SettingsRouter);
 app.use('/comment',CommentsRouter);
 app.use('/conversation',ConversationRouter);
 app.use('/message',MessageRouter);
+app.use('/story',StoriesRouter);
 
 // socket connection 
 io.on('connection',(socket)=>{
