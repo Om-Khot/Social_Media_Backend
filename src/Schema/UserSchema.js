@@ -50,6 +50,30 @@ const UserSchema = new mongoose.Schema({
         type : String,
         enum : ["Male","Female","Other"]
     },
+    followers : [
+        {
+            type : mongoose.Schema.Types.ObjectId,
+            ref : "User",
+        }
+    ],
+    following : [
+        {
+            type : mongoose.Schema.Types.ObjectId,
+            ref : "User",
+        }
+    ],
+    followRequests : [
+        {
+            type : mongoose.Schema.Types.ObjectId,
+            ref : "User",
+        }
+    ],
+    ownRequests : [
+        {
+            type : mongoose.Schema.Types.ObjectId,
+            ref : "User",
+        }
+    ]
 },{
     timestamps: true
 });

@@ -13,6 +13,8 @@ import CommentsRouter from './Routes/CommentsRouter.js';
 import ConversationRouter from './Routes/ConversationRouter.js';
 import MessageRouter from './Routes/MessageRouter.js';
 import StoriesRouter from './Routes/StoriesRoute.js';
+import FollowRequestRouter from './Routes/FollowRequsetRouter.js';
+import { FollowRouter } from './Routes/FollowRoute.js';
 
 const app = express(); // Express app
 const server = http.createServer(app); // wrap express app with http server
@@ -42,6 +44,8 @@ app.use('/comment',CommentsRouter);
 app.use('/conversation',ConversationRouter);
 app.use('/message',MessageRouter);
 app.use('/story',StoriesRouter);
+app.use('/followRequest',FollowRequestRouter);
+app.use('/follow',FollowRouter);
 
 // socket connection 
 io.on('connection',(socket)=>{
