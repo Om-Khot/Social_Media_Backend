@@ -21,14 +21,14 @@ const server = http.createServer(app); // wrap express app with http server
 
 const io = new Server(server,{
     cors : {
-        origin : "https://social-media-app-frontend-peach.vercel.app",
+        origin : "https://social-media-app-frontend-git-main-om-khots-projects.vercel.app/",
         methods : ["GET","POST"],
         credentials : true
     }
 });
 
 app.use(cors({
-    origin : "https://social-media-app-frontend-peach.vercel.app",
+    origin : "https://social-media-app-frontend-git-main-om-khots-projects.vercel.app/",
     credentials : true
 }))
 
